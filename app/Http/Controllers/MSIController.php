@@ -310,5 +310,101 @@ class MSIController extends Controller
 			$pr_content->save();
 		}
 	}
+
+	public function MRS()
+	{
+		$materials = material::all();
+		return view('msi.mrs', compact('materials'));
+	}
+	public function viewmrs($id)
+	{
+		$mrs = material::find($id);
+		$views = mrscontent::where('mrs_id', $id)->get();
+		$total = mrscontent::where('mrs_id', $id)->sum('amount');
+		return view('msi.reports.view-mrs', ['mrs' => $mrs, 'views' => $views, 'total' => $total	]);
+	}
+
+	public function addmrs()
+	{
+		if(Request::ajax())
+		{
+			$mrs = new material;
+			$mrs->supplier = Request::get('supplier');
+			$mrs->address = Request::get('address');
+			$mrs->invoice_number = Request::get('invoice_number');
+			$mrs->invoice_date = Request::get('invoice_date');
+			$mrs->delivery_reciept_number = Request::get('delivery_reciept_number');
+			$mrs->delivery_reciept_date = Request::get('delivery_reciept_date');
+			$mrs->po_number = Request::get('po_number');
+			$mrs->po_date = Request::get('po_date');
+			$mrs->storekeeper = Request::get('storekeeper');
+			$mrs->plant_maint_officer = Request::get('plant_maint_officer');
+			$mrs->supplier_representative = Request::get('supplier_representative');
+			$mrs->reason = Request::get('reason');
+			$mrs->number = Request::get('number');
+			$mrs->save(); 
+
+			return Response::json(['mrs' => $mrs]);
+		}
+	}
+
+	public function addmrscontent()
+	{
+		if(Request::ajax())
+		{
+			$mrsc = new mrscontent;
+			$mrsc->mrs_id = Request::get('mrs_id');
+			$mrsc->description = Request::get('description');
+			$mrsc->quantity = Request::get('quantity');
+			$mrsc->unit = Request::get('unit');
+			$mrsc->unit_price = Request::get('unit_price');
+			$mrsc->amount = Request::get('quantity') * Request::get('unit_price');
+			$mrsc->save();
+		}
+	}
+
+	public function disbursementvoucher()
+	{
+		$dvs = disbursement_voucher::all();
+		return view('msi.dv', compact('dvs'));
+	} 
+
+	public function adddisbursementvoucher()
+	{
+		if(Request::ajax())
+		{
+			$dv = new disbursement_voucher;
+			$dv->mode_of_payment = Request::get('mode_of_payment');
+			$dv->number = Request::get('number');
+			$dv->dv_date = Request::get('dv_date');
+			$dv->payee_office = Request::get('payee_office');
+			$dv->tin_employee_number = Request::get('tin_employee_number');
+			$dv->os_bus_number = Request::get('os_bus_number');
+			$dv->os_bus_date = Request::get('os_bus_date');
+			$dv->address = Request::get('address');
+			$dv->title = Request::get('title');
+			$dv->explanation = Request::get('explanation');
+			$dv->amount = Request::get('amount');
+			$dv->cash_available = Request::get('cash_available');
+			$dv->printed_name_one = Request::get('printed_name_one');
+			$dv->printed_name_two = Request::get('printed_name_two');
+			$dv->printed_name_three = Request::get('printed_name_three');
+			$dv->position_one = Request::get('position_one');
+			$dv->position_two = Request::get('position_two');
+			$dv->position_three = Request::get('position_three');
+			$dv->certified_date_one = Request::get('certified_date_one');
+			$dv->certified_date_two = Request::get('certified_date_two');
+			$dv->certified_date_three = Request::get('certified_date_three');
+			$dv->save();
+
+			return Response::json(['dv' => $dv]);
+		}
+	}
+
+	public function viewdisbursementvoucher($id)
+	{
+		$dvs = disbursement_voucher::find($id);
+		return view('msi.reports.view-dv', compact('dvs'));
+	}
 }
 
