@@ -9,9 +9,8 @@ use App\bincard;
 use App\bincardcontent;
 use App\stockcard;
 use App\stockcardcontent;
-use App\material;
-use App\mrscontent;
-use App\disbursement_voucher;
+use App\purchase_requisition;
+use App\purchase_requisitioncontent;
 
 class MSIController extends Controller
 {
@@ -196,105 +195,120 @@ class MSIController extends Controller
 
 	public function viewstockstatus()
 	{
-		$items = stockcard::with('stockcardcontent')->get();
-		// $test = $items->first()->stockcardcontent->where('created_at', '>=', Carbon::now()->subMonth())->sum('received_quantity');
-		// dd($test);
+		$items = stockcard::with('stockcardcontent')->orderBy('article')->get();
 		return view('msi.reports.view-stockstatus', compact('items'));
 	}
-	public function MRS()
+
+	public function viewinventorymonthly($x)
 	{
-		$materials = material::all();
-		return view('msi.mrs', compact('materials'));
-	}
-	public function viewmrs($id)
-	{
-		$mrs = material::find($id);
-		$views = mrscontent::where('mrs_id', $id)->get();
-		$total = mrscontent::where('mrs_id', $id)->sum('amount');
-		return view('msi.reports.view-mrs', ['mrs' => $mrs, 'views' => $views, 'total' => $total	]);
+		$type = 'monthly';
+		$items = stockcard::whereHas('stockcardcontent', function($query) use ($x){
+			$query->whereMonth('created_at', $x)->whereYear('created_at', Carbon::now()->year);
+		})->get();
+		return view('msi.reports.view-inventory', ['items' => $items, 'type' => $type, 'x' => $x]);
 	}
 
-	public function addmrs()
+	public function viewinventoryquarterly($x)
 	{
+		$type = 'quarterly';
+		$i = $n = 1;
+		while($x >= 2 && $i < $x)
+		{
+			$n += 3;
+			$i++;
+		}
+		$items = stockcard::whereHas('stockcardcontent', function($query) use ($n){
+			$query->whereMonth('created_at', '>=', $n)->whereMonth('created_at', '<=', $n+2)->whereYear('created_at', Carbon::now()->year);
+		})->get();
+		$x = $n+2;
+		return view('msi.reports.view-inventory', ['items' => $items, 'type' => $type, 'x' => $x]);
+	}
+
+	public function viewinventorysemiannually($x)
+	{
+		$type = 'semiannually';
+		$i = $n = 1;
+		while($x >= 2 && $i < $x)
+		{
+			$n += 6;
+			$i++;
+		}
+		$items = stockcard::whereHas('stockcardcontent', function($query) use ($n){
+			$query->whereMonth('created_at', '>=', $n)->whereMonth('created_at', '<=', $n+5)->whereYear('created_at', Carbon::now()->year);
+		})->get();
+		$x = $n+5;
+		return view('msi.reports.view-inventory', ['items' => $items, 'type' => $type, 'x' => $x]);
+	}
+
+	public function viewinventoryannually($x)
+	{
+		$type = 'annually';
+		$items = stockcard::whereMonth('created_at', '>=', 1)->whereMonth('created_at', '<=', 12)->get();
+		return view('msi.reports.view-inventory', ['type' => $type]);
+	}
+
+	public function purchase_requisition()
+	{
+		$items = purchase_requisition::all();
+		return view('msi.purchase_requisition', compact('items'));
+	}
+
+	public function addpurchase_requisition()
+	{
+
 		if(Request::ajax())
 		{
-			$mrs = new material;
-			$mrs->supplier = Request::get('supplier');
-			$mrs->address = Request::get('address');
-			$mrs->invoice_number = Request::get('invoice_number');
-			$mrs->invoice_date = Request::get('invoice_date');
-			$mrs->delivery_reciept_number = Request::get('delivery_reciept_number');
-			$mrs->delivery_reciept_date = Request::get('delivery_reciept_date');
-			$mrs->po_number = Request::get('po_number');
-			$mrs->po_date = Request::get('po_date');
-			$mrs->storekeeper = Request::get('storekeeper');
-			$mrs->plant_maint_officer = Request::get('plant_maint_officer');
-			$mrs->supplier_representative = Request::get('supplier_representative');
-			$mrs->reason = Request::get('reason');
-			$mrs->number = Request::get('number');
-			$mrs->save(); 
+			$pr = new purchase_requisition;
 
-			return Response::json(['mrs' => $mrs]);
+			$pr->pr_no = Request::get('pr_number');
+			$pr->to = Request::get('to');
+			$pr->charge_to = Request::get('charge_to');
+			$pr->options = Request::get('options');
+			$pr->needs_item = Request::get('needs_item');
+			$pr->needs_budget = Request::get('needs_budget');
+			$pr->justification = Request::get('justification');
+			$pr->end_user = Request::get('end_user');
+			$pr->job_work_order_no = Request::get('order_no');
+			$pr->to_be_carried = Request::get('to_be_carried');
+			$pr->on_case_to = Request::get('on_case_to');
+			$pr->requisitioned_name = Request::get('requisitioned_name');
+			$pr->requisitioned_position = Request::get('requisitioned_position');
+			$pr->supervisor = Request::get('supervisor');
+			$pr->finance = Request::get('finance');
+			$pr->general_manager = Request::get('approved_general_manager');
+			$pr->save();
+
+			return Response::json(['purchase_requisition' => $pr]);
 		}
 	}
 
-	public function addmrscontent()
+	public function viewpurchase_requisition($id)
 	{
-		if(Request::ajax())
-		{
-			$mrsc = new mrscontent;
-			$mrsc->mrs_id = Request::get('mrs_id');
-			$mrsc->description = Request::get('description');
-			$mrsc->quantity = Request::get('quantity');
-			$mrsc->unit = Request::get('unit');
-			$mrsc->unit_price = Request::get('unit_price');
-			$mrsc->amount = Request::get('quantity') * Request::get('unit_price');
-			$mrsc->save();
-		}
+		$purchase_req = purchase_requisition::find($id);
+		$items = purchase_requisitioncontent::where('pr_id',  $id)->get();
+		return view('msi.reports.view-purchase-requisition', ['purchase_req' => $purchase_req, 'items' => $items]);
 	}
 
-	public function disbursementvoucher()
-	{
-		$dvs = disbursement_voucher::all();
-		return view('msi.dv', compact('dvs'));
-	} 
 
-	public function adddisbursementvoucher()
+	public function addpurchase_requisitioncontent()
 	{
-		if(Request::ajax())
+			
+		if (Request::ajax())
 		{
-			$dv = new disbursement_voucher;
-			$dv->mode_of_payment = Request::get('mode_of_payment');
-			$dv->number = Request::get('number');
-			$dv->dv_date = Request::get('dv_date');
-			$dv->payee_office = Request::get('payee_office');
-			$dv->tin_employee_number = Request::get('tin_employee_number');
-			$dv->os_bus_number = Request::get('os_bus_number');
-			$dv->os_bus_date = Request::get('os_bus_date');
-			$dv->address = Request::get('address');
-			$dv->title = Request::get('title');
-			$dv->explanation = Request::get('explanation');
-			$dv->amount = Request::get('amount');
-			$dv->cash_available = Request::get('cash_available');
-			$dv->printed_name_one = Request::get('printed_name_one');
-			$dv->printed_name_two = Request::get('printed_name_two');
-			$dv->printed_name_three = Request::get('printed_name_three');
-			$dv->position_one = Request::get('position_one');
-			$dv->position_two = Request::get('position_two');
-			$dv->position_three = Request::get('position_three');
-			$dv->certified_date_one = Request::get('certified_date_one');
-			$dv->certified_date_two = Request::get('certified_date_two');
-			$dv->certified_date_three = Request::get('certified_date_three');
-			$dv->save();
+			$pr_content = new purchase_requisitioncontent;
 
-			return Response::json(['dv' => $dv]);
+			$pr_content->pr_id = Request::get('pr_id');
+			$pr_content->item_no = Request::get('pr_id');
+			$pr_content->stock_no = Request::get('stock_no');
+			$pr_content->available_stock = Request::get('available_stock');
+			$pr_content->reorder_point = Request::get('reorder_point');
+			$pr_content->reorder_quantity = Request::get('reorder_quantity');
+			$pr_content->particulars = Request::get('particulars');
+			$pr_content->quantity = Request::get('quantity');
+			$pr_content->unit_cost = Request::get('unit_cost');
+			$pr_content->estimated_cost = Request::get('estimated_cost');
+			$pr_content->save();
 		}
-	}
-
-	public function viewdisbursementvoucher($id)
-	{
-		$dvs = disbursement_voucher::find($id);
-		return view('msi.reports.view-dv', compact('dvs'));
 	}
 }
 
