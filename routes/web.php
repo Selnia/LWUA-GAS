@@ -23,8 +23,4 @@ Route::group(['prefix' => 'msi'], function () {
 	Route::get('/viewpurchase_requisition/{id}', 'MSIController@viewpurchase_requisition');
 	Route::post('/addpurchase_requisitioncontent', 'MSIController@addpurchase_requisitioncontent');
 
-	Route::get('autocomplete-search',array('as'=>'autocomplete.search','uses'=>'MSIController@index'));
-
-Route::get('autocomplete-ajax',array('as'=>'autocomplete.ajax','uses'=>'MSIController@ajaxData'));
-
 });
