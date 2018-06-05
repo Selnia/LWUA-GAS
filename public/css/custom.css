@@ -1,0 +1,93 @@
+ body {
+ 	cursor: default;
+ 	display: flex;
+ 	min-height: 100vh;
+ 	flex-direction: column;
+ }
+
+ main {
+ 	flex: 1 0 auto;
+ }
+
+ .modal-close-position {
+ 	position: relative;
+ 	top: -20px;
+ }
+
+ .action-icon {
+ 	font-size: 25px;
+ 	position: relative;
+ 	top: 2px;
+ }
+
+ .uppercase {
+ 	text-transform: uppercase;
+ }
+
+ table.sweet-alert-table td {
+ 	padding: 5px 5px;
+ }
+
+ table.sweet-alert-table tr:first-child>td {
+ 	padding: 20px 5px 5px 5px;
+ }
+
+ .modal-centered {
+ 	max-height: 90%;
+ 	top: 5% !important;
+ }
+
+ #horizontal-nav ul li {
+ 	text-align: center;
+ }
+
+ #horizontal-nav ul li a i {
+ 	height: 0px;
+ 	line-height: 45px;
+ 	font-size: 1.8rem;
+ }
+
+ #horizontal-nav ul li a span {
+ 	position: relative;
+ 	top: 12px;
+ }
+
+ #horizontal-nav .dropdown-menu span i {
+ 	line-height: 65px;
+ }
+
+ .dropdown-horizontal-list li a {
+ 	min-width: 150px;
+ 	text-align: left;
+ 	font-size: 1.0rem;
+ 	font-weight: 400;
+ }
+
+ .dropdown-content.nested {
+ 	overflow-y: visible;
+ }
+
+ .dropdown-content.nested i.dropdown-icon{
+ 	display: inline;
+ 	line-height: 24px !important;
+ 	font-size: 1.5rem !important;
+ 	position: absolute;
+ 	right: -20px;
+ }
+
+ .dropdown-content .dropdown-content {
+ 	margin-left: 100%;
+ }
+
+ ul.side-nav.leftside-navigation li.bold.active>a,
+ ul.side-nav.leftside-navigation li.bold.active>a>i {
+	color: #00bcd4;
+ }
+
+ .side-nav .collapsible-body li a {
+ 	margin: 0 1rem 0 3rem;
+ }
+
+ .clock-zoom {
+ 	zoom: 0.8;
+ }
