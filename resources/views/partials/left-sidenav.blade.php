@@ -31,7 +31,6 @@
     </li>
     <li class="no-padding">
       <ul class="collapsible" data-collapsible="accordion">
-        <li class="bold">
         <li class="bold {{Request::is('/')?'active':null}}">
           <a href="/" class="waves-effect waves-cyan">
             <i class="material-icons">pie_chart_outlined</i>
@@ -51,8 +50,6 @@
                   </li>
                   <li {{Request::is('msi/disbursementvoucher')?'class=active':null}}><a href="{{ url('msi/disbursementvoucher') }}">Disbursement Voucher</a>
                   <li {{Request::is('msi/purchase_requisition')?'class=active':null}}><a href="{{ url('msi/purchase_requisition') }}">Puchase Requisition</a>
-                  </li>
-                  <li {{Request::is('msi/stockcard')?'class=active':null}}><a href="{{ url('msi/stockcard') }}">Stock Card</a>
                   </li>
                 </ul>
               </div>
