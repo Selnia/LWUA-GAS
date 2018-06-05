@@ -11,6 +11,9 @@ use App\stockcard;
 use App\stockcardcontent;
 use App\purchase_requisition;
 use App\purchase_requisitioncontent;
+use App\material;
+use App\mrscontent;
+use App\disbursement_voucher;
 
 class MSIController extends Controller
 {
