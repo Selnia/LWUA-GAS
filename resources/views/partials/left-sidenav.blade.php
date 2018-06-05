@@ -31,7 +31,11 @@
     </li>
     <li class="no-padding">
       <ul class="collapsible" data-collapsible="accordion">
+<<<<<<< HEAD
         <li class="bold">
+=======
+        <li class="bold {{Request::is('/')?'active':null}}">
+>>>>>>> 2c4de2162b0d23b248c0b7fe60a6ed72374f32b8
           <a href="/" class="waves-effect waves-cyan">
             <i class="material-icons">pie_chart_outlined</i>
             <span class="nav-text">Dashboard</span>
@@ -44,11 +48,17 @@
                 <ul>
                   <li {{Request::is('msi/bincard')?'class=active':null}}><a href="{{ url('msi/bincard') }}">Bin Card</a>
                   </li>
+<<<<<<< HEAD
                   <li {{Request::is('msi/stockcard')?'class=active':null}}><a href="{{ url('msi/stockcard') }}">Stock Card</a>
                   </li>
                   <li {{Request::is('msi/MRS')?'class=active':null}}><a href="{{ url('msi/MRS') }}">Materials Returned to Supplier</a>
                   </li>
                   <li {{Request::is('msi/disbursementvoucher')?'class=active':null}}><a href="{{ url('msi/disbursementvoucher') }}">Disbursement Voucher</a>
+=======
+                  <li {{Request::is('msi/purchase_requisition')?'class=active':null}}><a href="{{ url('msi/purchase_requisition') }}">Puchase Requisition</a>
+                  </li>
+                  <li {{Request::is('msi/stockcard')?'class=active':null}}><a href="{{ url('msi/stockcard') }}">Stock Card</a>
+>>>>>>> 2c4de2162b0d23b248c0b7fe60a6ed72374f32b8
                   </li>
                 </ul>
               </div>
