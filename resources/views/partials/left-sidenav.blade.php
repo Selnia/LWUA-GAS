@@ -24,15 +24,11 @@
             <li class="bold"><a class="collapsible-header waves-effect waves-cyan {{Request::is('msi/*')?'active':null}}"><i class="material-icons">view_compact</i> MSI</a>
               <div class="collapsible-body">
                 <ul>
-                  <li {{Request::is('msi/bincard')?'class=active':null}}><a href="{{ url('msi/bincard') }}">Bin Card</a>
-                  </li>
-                  <li {{Request::is('msi/stockcard')?'class=active':null}}><a href="{{ url('msi/stockcard') }}">Stock Card</a>
-                  </li>
-                  <li {{Request::is('msi/MRS')?'class=active':null}}><a href="{{ url('msi/MRS') }}">Materials Returned to Supplier</a>
-                  </li>
-                  <li {{Request::is('msi/disbursementvoucher')?'class=active':null}}><a href="{{ url('msi/disbursementvoucher') }}">Disbursement Voucher</a>
-                  <li {{Request::is('msi/purchase_requisition')?'class=active':null}}><a href="{{ url('msi/purchase_requisition') }}">Puchase Requisition</a>
-                  </li>
+                  <li {{Request::is('msi/bincard')?'class=active':null}}><a href="{{ url('msi/bincard') }}">Bin Card</a></li>
+                  <li {{Request::is('msi/stockcard')?'class=active':null}}><a href="{{ url('msi/stockcard') }}">Stock Card</a></li>
+                  <li {{Request::is('msi/purchase_requisition')?'class=active':null}}><a href="{{ url('msi/purchase_requisition') }}">Puchase Requisition</a></li>
+                  <li {{Request::is('msi/MRS')?'class=active':null}}><a href="{{ url('msi/MRS') }}">Materials Returned to Supplier</a></li>
+                  <li {{Request::is('msi/disbursementvoucher')?'class=active':null}}><a href="{{ url('msi/disbursementvoucher') }}">Disbursement Voucher</a></li>
                 </ul>
               </div>
             </li>
