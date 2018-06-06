@@ -84,6 +84,10 @@
 	color: #00bcd4;
  }
 
+ .side-nav .collapsible-body li a {
+ 	margin: 0 1rem 0 3rem;
+ }
+
  .clock-zoom {
  	zoom: 0.8;
  }

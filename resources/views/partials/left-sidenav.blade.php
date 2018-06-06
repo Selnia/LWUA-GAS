@@ -3,29 +3,11 @@
     <li class="user-details cyan darken-2">
       <div class="row">
         <div class="col col s4 m4 l4">
-          <img src="{{ asset('images/avatar/avatar-7.png') }}" alt="" class="circle responsive-img valign profile-image cyan">
+          <img src="{{ asset('images/avatar/avatar-16.png') }}" alt="" class="circle responsive-img valign profile-image cyan">
         </div>
         <div class="col col s8 m8 l8">
-          <ul id="profile-dropdown-nav" class="dropdown-content">
-            <li>
-              <a href="#" class="grey-text text-darken-1"><i class="material-icons">face</i> Profile</a>
-            </li>
-            <li>
-              <a href="#" class="grey-text text-darken-1"><i class="material-icons">settings</i> Settings</a>
-            </li>
-            <li>
-              <a href="#" class="grey-text text-darken-1"><i class="material-icons">live_help</i> Help</a>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <a href="#" class="grey-text text-darken-1"><i class="material-icons">lock_outline</i> Lock</a>
-            </li>
-            <li>
-              <a href="#" class="grey-text text-darken-1"><i class="material-icons">keyboard_tab</i> Logout</a>
-            </li>
-          </ul>
-          <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown-nav">John Doe<i class="mdi-navigation-arrow-drop-down right"></i></a>
-          <p class="user-roal">Administrator</p>
+          <p class="user-name">Selnia</p>
+          <p class="user-role">Administrator</p>
         </div>
       </div>
     </li>
