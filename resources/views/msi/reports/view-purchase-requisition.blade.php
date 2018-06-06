@@ -224,7 +224,7 @@
 							</td>
 							<td style="border-bottom: none;">
 								<label>
-									<center>{{ number_format($item->quantity, 0, '', ',')?:'' }}</center>
+									<center>{{ number_format($item->quantity, 0, '', ',')?:'' }} Unit/s</center>
 								</label>
 							</td>
 							<td style="border-bottom: none;">
@@ -268,7 +268,7 @@
 											<label class="float-right">T O T A L</label>
 										</td>
 										<td style="border-top: none; border-right: none; padding: 5px">
-											<label><b>1,000,000.00</b></label>
+											<label><b>{{($x = str_replace('.00', '', $total)?:'')?substr_replace(number_format($x, 2, '.', ','), '₱', 0, 0):''}}</b></label>
 										</td>
 									</tr>
 									<tr>

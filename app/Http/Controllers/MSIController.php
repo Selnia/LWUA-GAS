@@ -289,7 +289,8 @@ class MSIController extends Controller
 	{
 		$purchase_req = purchase_requisition::find($id);
 		$items = purchase_requisitioncontent::where('pr_id',  $id)->get();
-		return view('msi.reports.view-purchase-requisition', ['purchase_req' => $purchase_req, 'items' => $items]);
+		$total = purchase_requisitioncontent::where('pr_id', $id)->sum('estimated_cost');
+		return view('msi.reports.view-purchase-requisition', ['purchase_req' => $purchase_req, 'items' => $items, 'total' => $total]);
 	}
 
 
@@ -309,7 +310,7 @@ class MSIController extends Controller
 			$pr_content->particulars = Request::get('particulars');
 			$pr_content->quantity = Request::get('quantity');
 			$pr_content->unit_cost = Request::get('unit_cost');
-			$pr_content->estimated_cost = Request::get('estimated_cost');
+			$pr_content->estimated_cost = Request::get('quantity') * Request::get('unit_cost');
 			$pr_content->save();
 		}
 	}

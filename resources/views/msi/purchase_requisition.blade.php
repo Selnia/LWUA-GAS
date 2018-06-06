@@ -35,20 +35,15 @@
 						
 					</div>
 					<div class="input-field col s12 m6">
-						<select name="to">
-							<option value="admin">Admin</option>
-							<option value="financial">Financial</option>
-							<option value="commercial">Commercial?</option>
-							<option value="technical">Technical?</option>
-						</select>
-						<label for="to">To</label>
+						<input id="to" type="text" class="validate" name="to" required>
+						<label for="to" data-error="Insufficient">To</label> 
 					</div>
 					<div class="input-field col s12 m6">
 						<select name="charge_to">
 							<option value="admin" selected>Admin</option>
-							<option value="financial">Financial</option>
-							<option value="commercial">Commercial?</option>
-							<option value="technical">Technical?</option>
+							<option value="financial">Finance</option>
+							<option value="commercial">Commercial</option>
+							<option value="technical">Technical</option>
 						</select>
 						<label for="charge_to">Charge to</label>
 					</div>
@@ -86,8 +81,13 @@
 						<label for="justification">Justification</label>
 					</div>	
 					<div class="input-field col s6">
-						<input id="end_user" type="text" class="validate" name="end_user" required>
-						<label for="end_user" data-error="Insufficient">End User/s</label> 
+						<select name="end_user">
+							<option value="admin">Admin</option>
+							<option value="financial">Finance</option>
+							<option value="commercial">Commercial</option>
+							<option value="technical">Technical</option>
+						</select>
+						<label for="end_user">End User/s</label>
 					</div>
 					<div class="input-field col s6">
 						<input id="order_no" type="text" class="validate uppercase" name="order_no" required>
@@ -224,10 +224,10 @@
 						<input id="unit_cost" type="text" class="validate" name="unit_cost" required>
 						<label for="unit_cost" data-error="Insufficient">Unit Cost</label> 
 					</div>
-					<div class="input-field col s12 m4">
-						<input id="estimated_cost" type="text" class="validate" name="estimated_cost" required>
+					<!-- <div class="input-field col s12 m4">
+						<input id="estimated_cost" type="text" class="validate" name="estimated_cost">
 						<label for="estimated_cost" data-error="Insufficient">Estimated Cost</label>
-					</div>
+					</div> -->
 				</div>
 			</div>
 
@@ -316,7 +316,7 @@
 
 			swal({   
 				title: "Want to save this?",   
-				text: "<table class='sweet-alert-table'><thead><tr><th width='35%'></th><th></th></tr></thead><tbody><tr><td>PR No:</td><td class='uppercase' colspan=3><b>"+$('input[name=pr_number]').val()+"</b></td></tr><tr><td>To: </td><td><b>"+$('select[name=to]').val()+"</b></td><td>Charge To: </td><td><b>"+$('select[name=charge_to]').val()+"</b></td></tr><tr><td>Justification: </td><td colspan=3><b>"+$('textarea[name=justification]').val()+"</b></td></tr><tr><td>End User: </td><td><b>"+$('input[name=end_user]').val()+"</b></td><td>Order No: </td><td><b>"+$('input[name=order_no]').val()+"</b></td></tr><tr><td colspan=4><label class='bold'>1. Requisitioned By:</label></td></tr><tr><td>Name:</td><td><b>"+$('input[name=requisitioned_name]').val()+"</b></td><td>Position: </td><td><b>"+$('input[name=requisitioned_position]').val()+"</b></td></tr><tr><td colspan=4><label class='bold'>2. Certified Included in the Program of Activity Recommending, Approval:</label></td></tr><tr><td colspan=2>Supervisor/ DIVISION MGR:</td><td colspan=2><b>"+$('input[name=supervisor]').val()+"</b></td></tr><tr><td colspan=4><label class='bold'>3. Certified Funds Available Recommending Approval:</label></td></tr><tr><td colspan=2>FINANCE/ Acctg Mgr.:</td><td><b>"+$('input[name=finance]').val()+"</b></td></tr><tr><td colspan=4><label class='bold'>4. Approved / Disapproved:</label></td><tr><tr><td colspan=2>General Manager:</td><td><b>"+$('input[name=approved_general_manager]').val()+"</b></td></tr></tbody></table>",   
+				text: "<table class='sweet-alert-table'><thead><tr><th width='35%'></th><th></th></tr></thead><tbody><tr><td>PR No:</td><td class='uppercase' colspan=3><b>"+$('input[name=pr_number]').val()+"</b></td></tr><tr><td>To: </td><td><b>"+$('input[name=to]').val()+"</b></td><td>Charge To: </td><td><b>"+$('select[name=charge_to]').val()+"</b></td></tr><tr><td>Justification: </td><td colspan=3><b>"+$('textarea[name=justification]').val()+"</b></td></tr><tr><td>End User: </td><td><b>"+$('select[name=end_user]').val()+"</b></td><td>Order No: </td><td><b>"+$('input[name=order_no]').val()+"</b></td></tr><tr><td colspan=4><label class='bold'>1. Requisitioned By:</label></td></tr><tr><td>Name:</td><td><b>"+$('input[name=requisitioned_name]').val()+"</b></td><td>Position: </td><td><b>"+$('input[name=requisitioned_position]').val()+"</b></td></tr><tr><td colspan=4><label class='bold'>2. Certified Included in the Program of Activity Recommending, Approval:</label></td></tr><tr><td colspan=2>Supervisor/ DIVISION MGR:</td><td colspan=2><b>"+$('input[name=supervisor]').val()+"</b></td></tr><tr><td colspan=4><label class='bold'>3. Certified Funds Available Recommending Approval:</label></td></tr><tr><td colspan=2>FINANCE/ Acctg Mgr.:</td><td><b>"+$('input[name=finance]').val()+"</b></td></tr><tr><td colspan=4><label class='bold'>4. Approved / Disapproved:</label></td><tr><tr><td colspan=2>General Manager:</td><td><b>"+$('input[name=approved_general_manager]').val()+"</b></td></tr></tbody></table>",   
 				type: "warning",
 				html: true,   
 				showCancelButton: true,   
