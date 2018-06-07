@@ -26,6 +26,12 @@ class CreatePurchaseRequisitioncontentsTable extends Migration
             $table->double('unit_cost');
             $table->double('estimated_cost');
             $table->double('total')->nullable();
+            $table->string('a_item_no', 20);
+            $table->integer('a_quantity');
+            $table->string('a_classification', 30);
+            $table->string('b_item_no', 20);
+            $table->integer('b_quantity');
+            $table->string('b_classification', 30);
             $table->timestamps();
         });
     }

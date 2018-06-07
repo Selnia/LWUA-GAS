@@ -229,12 +229,12 @@
 							</td>
 							<td style="border-bottom: none;">
 								<label>
-									<center>{{ number_format($item->unit_cost, 0, '', ',')?:'' }}</center>
+									<center>₱{{ number_format($item->unit_cost, 0, '', ',')?:'' }}</center>
 								</label>
 							</td>
 							<td style="border-bottom: none; border-right: none;">
 								<label>
-									<center>{{ number_format($item->estimated_cost, 0, '', ',')?:'' }}</center>
+									<center>₱{{ number_format($item->estimated_cost, 0, '', ',')?:'' }}</center>
 								</label>
 							</td>
 						</tr>
@@ -372,12 +372,13 @@
 											</center>
 										</td>
 									</tr>
+									@forelse ($items as $item)
 									<tr>
 										<td class="no_border" width="10%">
 											<center>
 												<label>
 													<small>
-														Item001
+														{{ $item->a_item_no }}
 													</small>
 												</label>
 											</center>
@@ -386,7 +387,7 @@
 											<center>
 												<label>
 													<small>
-														1,000
+														{{ $item->a_quantity }}
 													</small>
 												</label>
 											</center>
@@ -395,23 +396,27 @@
 											<center>
 												<label>
 													<small>
-														SADADASASd
+														{{ $item->a_classification }}
 													</small>
 												</label>
 											</center>
 										</td>
 									</tr>
+									@empty
+									@endforelse
 									<tr>
 										<td style="border-top: none; border-left: none; border-right: none; border-bottom: none;" colspan="3">
 											<small class="bold">B. Supplies (Stock Status)</small>
 										</td>
 									</tr>
+
+									@forelse ($items as $item)
 									<tr>
 										<td class="no_border" width="10%">
 											<center>
 												<label>
 													<small>
-														Item001
+														{{ $item->b_item_no }}
 													</small>
 												</label>
 											</center>
@@ -420,7 +425,7 @@
 											<center>
 												<label >
 													<small>
-														1,000
+														{{ $item->b_quantity }}
 													</small>
 												</label>
 											</center>
@@ -429,19 +434,21 @@
 											<center>
 												<label >
 													<small>
-														asdasdadad
+														{{ $item->b_classification }}
 													</small>
 												</label>
 											</center>
 										</td>
 									</tr>
+									@empty
+									@endforelse
 								</table>
 							</td>
 							<td style="border-bottom: none; border-right: none;"  width="40%">
 								<table cellspacing="0" cellpadding="0">
 									<tr>
 										<td style="border-top: none; border-left: none; border-right: none; border-bottom: none;" colspan="3">
-											<label>Control No. <b>QWERTY001</b></label>
+											<label>Control No. <b>{{ $purchase_req->control_no }}</b></label>
 											<br><br>
 										</td>
 									</tr>
@@ -461,21 +468,20 @@
 											<small>Budget</small>
 										</td>
 										<td style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>1,000,000.00</b></small>
+											<small><b>₱{{ number_format($purchase_req->budget_quarter, 0, '', ',')?:'' }}</b></small>
 										</td>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>1,000,000.00</b></small>
+											<small><b>₱{{ number_format($purchase_req->budget_year, 0, '', ',')?:'' }}</b></small>
 										</td>
 									</tr>
 									<tr>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
 											<small>Amount Utilized</small>
-										</td>
-										<td style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>1,000,000.00</b></small>
+										</td>										<td style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
+											<small><b>₱{{ number_format($purchase_req->amount_quarter, 0, '', ',')?:'' }}</b></small>
 										</td>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>1,000,000.00</b></small>
+											<small><b>₱{{ number_format($purchase_req->amount_year, 0, '', ',')?:'' }}</b></small>
 										</td>
 									</tr>
 									<tr>
@@ -483,21 +489,21 @@
 											<small>Balance-to-Date</small>
 										</td>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>1,000,000.00</b></small>
+											<small><b>₱{{ number_format($purchase_req->btd_quarter, 0, '', ',')?:'' }}</b></small>
 										</td>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>1,000,000.00</b></small>
+											<small><b>₱{{ number_format($purchase_req->btd_year, 0, '', ',')?:'' }}</b></small>
 										</td>
 									</tr>
 									<tr>
 										<td style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small>Amount of hte Request</small>
+											<small>Amount of the Request</small>
 										</td>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>1,000,000.00</b></small>
+											<small><b>₱{{ number_format($purchase_req->amntreq_quarter, 0, '', ',')?:'' }}</b></small>
 										</td>
 										<td style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>1,000,000.00</b></small>
+											<small><b>₱{{ number_format($purchase_req->amntreq_year, 0, '', ',')?:'' }}</b></small>
 										</td>
 									</tr>
 									<tr>
@@ -505,10 +511,10 @@
 											<small>Balance after this Request</small>
 										</td>
 										<td style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>1,000,000.00</b></small>
+											<small><b>₱{{ number_format($purchase_req->balreq_quarter, 0, '', ',')?:'' }}</b></small>
 										</td>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>1,000,000.00</b></small>
+											<small><b>₱{{ number_format($purchase_req->balreq_year, 0, '', ',')?:'' }}</b></small>
 										</td>
 									</tr>
 								</table>

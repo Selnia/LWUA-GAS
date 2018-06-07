@@ -31,6 +31,17 @@ class CreatePurchaseRequisitionsTable extends Migration
             $table->string('supervisor', 50);
             $table->string('finance', 50);
             $table->string('general_manager', 50);
+            $table->string('control_no', 20);
+            $table->double('budget_quarter');
+            $table->double('budget_year');
+            $table->double('amount_quarter');
+            $table->double('amount_year');
+            $table->double('btd_quarter');
+            $table->double('btd_year');
+            $table->double('amntreq_quarter');
+            $table->double('amntreq_year');
+            $table->double('balreq_quarter');
+            $table->double('balreq_year');
             $table->timestamps();
         });
     }

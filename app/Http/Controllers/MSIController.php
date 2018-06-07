@@ -279,6 +279,17 @@ class MSIController extends Controller
 			$pr->supervisor = Request::get('supervisor');
 			$pr->finance = Request::get('finance');
 			$pr->general_manager = Request::get('approved_general_manager');
+			$pr->control_no = Request::get('control_no');
+			$pr->budget_quarter = Request::get('budget_quarter');
+			$pr->budget_year = Request::get('budget_year');
+			$pr->amount_quarter = Request::get('amount_quarter');
+			$pr->amount_year = Request::get('amount_year');
+			$pr->btd_quarter = Request::get('btd_quarter');
+			$pr->btd_year = Request::get('btd_year');
+			$pr->amntreq_quarter = Request::get('amntreq_quarter');
+			$pr->amntreq_year = Request::get('amntreq_year');
+			$pr->balreq_quarter = Request::get('balreq_quarter');
+			$pr->balreq_year = Request::get('balreq_year');
 			$pr->save();
 
 			return Response::json(['purchase_requisition' => $pr]);
@@ -311,6 +322,12 @@ class MSIController extends Controller
 			$pr_content->quantity = Request::get('quantity');
 			$pr_content->unit_cost = Request::get('unit_cost');
 			$pr_content->estimated_cost = Request::get('quantity') * Request::get('unit_cost');
+			$pr_content->a_item_no = Request::get('a_item_no');
+			$pr_content->a_quantity = Request::get('a_quantity');
+			$pr_content->a_classification = Request::get('b_classification');
+			$pr_content->b_item_no = Request::get('a_item_no');
+			$pr_content->b_quantity = Request::get('b_quantity');
+			$pr_content->b_classification = Request::get('b_classification');
 			$pr_content->save();
 		}
 	}

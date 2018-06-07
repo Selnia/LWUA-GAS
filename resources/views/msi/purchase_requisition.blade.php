@@ -113,6 +113,105 @@
 
 			<div class="row">
 				<div id="tab3" class="col s12 grey lighten-5">
+					<div class="row">
+						<h6>BUDGET STATUS</h6>
+					</div>
+					<div class="row">
+						<div class="input-field col s12 m4">
+							<input id="control_no" type="text" class="validate" name="control_no" required>
+							<label for="control_no" data-error="Insufficient">Control No.</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s2">
+							<p>
+								<label>Budget</label>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12 m6">
+							<input id="budget_quarter" type="text" class="validate" name="budget_quarter" required>
+							<label for="budget_quarter" data-error="Insufficient">For the quarter</label> 
+						</div>
+						<div class="input-field col s12 m6">
+							<input id="budget_year" type="text" class="validate" name="budget_year" required>
+							<label for="budget_year" data-error="Insufficient">For the year</label> 
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<p>
+								<label>Amount Utilized</label>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12 m6">
+							<input id="amount_quarter" type="text" class="validate" name="amount_quarter" required>
+							<label for="amount_quarter" data-error="Insufficient">For the quarter</label> 
+						</div>
+						<div class="input-field col s12 m6">
+							<input id="amount_year" type="text" class="validate" name="amount_year" required>
+							<label for="amount_year" data-error="Insufficient">For the year</label> 
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<p>
+								<label>Balance-to-Date</label>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12 m6">
+							<input id="btd_quarter" type="text" class="validate" name="btd_quarter" required>
+							<label for="btd_quarter" data-error="Insufficient">For the quarter</label> 
+						</div>
+						<div class="input-field col s12 m6">
+							<input id="btd_year" type="text" class="validate" name="btd_year" required>
+							<label for="btd_year" data-error="Insufficient">For the year</label> 
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<p>
+								<label>Amount of the Request</label>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12 m6">
+							<input id="amntreq_quarter" type="text" class="validate" name="amntreq_quarter" required>
+							<label for="amntreq_quarter" data-error="Insufficient">For the quarter</label> 
+						</div>
+						<div class="input-field col s12 m6">
+							<input id="amntreq_year" type="text" class="validate" name="amntreq_year" required>
+							<label for="amntreq_year" data-error="Insufficient">For the year</label> 
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<p>
+								<label>Balance after this Request</label>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12 m6">
+							<input id="balreq_quarter" type="text" class="validate" name="balreq_quarter" required>
+							<label for="balreq_quarter" data-error="Insufficient">For the quarter</label> 
+						</div>
+						<div class="input-field col s12 m6">
+							<input id="balreq_year" type="text" class="validate" name="balreq_year" required>
+							<label for="balreq_year" data-error="Insufficient">For the year</label> 
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div id="tab4" class="col s12 grey lighten-5">
 					<div class="col s12">
 						<p>
 							<label>1. Requisitioned By:</label>
@@ -167,6 +266,7 @@
 				    <li class="tab"><a href="#tab1"></a></li>
 				    <li class="tab"><a href="#tab2"></a></li>
 				    <li class="tab"><a href="#tab3"></a></li>
+				    <li class="tab"><a href="#tab4"></a></li>
 				  </ul>
 			</div>
 		</form>
@@ -216,18 +316,53 @@
 						<textarea id="particulars" class="materialize-textarea" name="particulars" required></textarea>
 						<label for="particulars">Particulars</label>
 					</div>
-					<div class="input-field col s12 m4">
+					<div class="input-field col s12 m6">
 						<input id="quantity" type="text" class="validate" name="quantity" required>
 						<label for="quantity" data-error="Insufficient">Quantity</label> 
 					</div>
-					<div class="input-field col s12 m4">
+					<div class="input-field col s12 m6">
 						<input id="unit_cost" type="text" class="validate" name="unit_cost" required>
 						<label for="unit_cost" data-error="Insufficient">Unit Cost</label> 
 					</div>
-					<!-- <div class="input-field col s12 m4">
-						<input id="estimated_cost" type="text" class="validate" name="estimated_cost">
-						<label for="estimated_cost" data-error="Insufficient">Estimated Cost</label>
-					</div> -->
+				</div>
+			</div>
+			<div class="row">
+				<h6>PROPERTY CONTROL</h6>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<p>
+						<label>A. Similar Item/ s Already </label>
+					</p>
+				</div>
+				<div class="input-field col s12 m4">
+					<input id="a_item_no" type="text" class="validate" name="a_item_no" required>
+					<label for="a_item_no" data-error="Insufficient">Item No.</label> 
+				</div>
+				<div class="input-field col s12 m4">
+					<input id="a_quantity" type="text" class="validate" name="a_quantity" required>
+					<label for="a_quantity" data-error="Insufficient">Quantity</label> 
+				</div>
+				<div class="input-field col s12 m4">
+					<input id="a_classification" type="text" class="validate" name="a_classification" required>
+					<label for="a_classification" data-error="Insufficient">Item Classification</label>
+				</div>
+				<div class="col s12">
+					<p>
+						<label>B. Supplies (Stock Status)</label>
+					</p>
+				</div>
+				<div class="input-field col s12 m4">
+					<input id="b_item_no" type="text" class="validate" name="b_item_no" required>
+					<label for="b_item_no" data-error="Insufficient">Item No.</label> 
+				</div>
+				<div class="input-field col s12 m4">
+					<input id="b_quantity" type="text" class="validate" name="b_quantity" required>
+					<label for="b_quantity" data-error="Insufficient">Quantity</label> 
+				</div>
+				<div class="input-field col s12 m4">
+					<input id="b_classification" type="text" class="validate" name="b_classification" required>
+					<label for="b_classification" data-error="Insufficient">Item Classification</label>
 				</div>
 			</div>
 
@@ -291,7 +426,7 @@
 		    if(tab!=1) {
 		     	$(this).attr('href', '#tab'+(tab-1));
 		     	tab--;
-		     	if (tab!=3) {
+		     	if (tab!=4) {
 		     		$('#nexttab').show();
 		     		$('#submit').hide();
 		     	}
@@ -299,13 +434,37 @@
 		});
 
 		$('#nexttab a').on('click', function() {
-		     if(tab!=3) {
+		     if(tab!=4) {
 		     	$(this).attr('href', '#tab'+(tab+1));
 		     	tab++;
-		     	if (tab==3)
+		     	if (tab==4)
 		     	{
 		     		$('#nexttab').hide();
 		     		$('#submit').show();
+		     	}
+		     }
+		});
+
+		var tabcontent = 1;
+		$('#prevtabcontent a').on('click', function() {
+		    if(tabcontent!=1) {
+		     	$(this).attr('href', '#tabcontent'+(tabcontent-1));
+		     	tabcontent--;
+		     	if (tabcontent!=1) {
+		     		$('#nexttabcontent').show();
+		     		$('#submitcontent').hide();
+		     	}
+		     }
+		});
+
+		$('#nexttabcontent a').on('click', function() {
+		     if(tabcontent!=4) {
+		     	$(this).attr('href', '#tabcontent'+(tabcontent+1));
+		     	tabcontent++;
+		     	if (tabcontent==4)
+		     	{
+		     		$('#nexttabcontent').hide();
+		     		$('#submitcontent').show();
 		     	}
 		     }
 		});
@@ -427,21 +586,6 @@
 				} 
 			});
 		}); 
-
-		var table = 1;
-		$('#prevtable a').on('click', function() {
-		    if(table!=1) {
-		     	$(this).attr('href', '#table'+(table-1));
-		     	table--;
-		    }
-		});
-
-
-		$('#nexttable a').on('click', function() {
-		     if(tab!=2) {
-		     	$(this).attr('href', '#table'+(table+1));
-		     	table++;		     }
-		});
 	});
 </script>
 
