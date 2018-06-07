@@ -335,15 +335,25 @@
 						<label>A. Similar Item/ s Already </label>
 					</p>
 				</div>
-				<div class="input-field col s12 m4">
+				<div class="col s12 m5">
+					<p class="center">
+						<label>Issued to Requisitioner/ s</label>
+					</p>
+				</div>
+				<div class="col s12 m7">
+					<p class="center">
+						<label>(For Semi-Expandable & Fixed Assets)</label>
+					</p>
+				</div>
+				<div class="input-field col s12 m3">
 					<input id="a_item_no" type="text" class="validate" name="a_item_no" required>
 					<label for="a_item_no" data-error="Insufficient">Item No.</label> 
 				</div>
-				<div class="input-field col s12 m4">
+				<div class="input-field col s12 m3">
 					<input id="a_quantity" type="text" class="validate" name="a_quantity" required>
 					<label for="a_quantity" data-error="Insufficient">Quantity</label> 
 				</div>
-				<div class="input-field col s12 m4">
+				<div class="input-field col s12 m6">
 					<input id="a_classification" type="text" class="validate" name="a_classification" required>
 					<label for="a_classification" data-error="Insufficient">Item Classification</label>
 				</div>
@@ -352,15 +362,15 @@
 						<label>B. Supplies (Stock Status)</label>
 					</p>
 				</div>
-				<div class="input-field col s12 m4">
+				<div class="input-field col s12 m3">
 					<input id="b_item_no" type="text" class="validate" name="b_item_no" required>
 					<label for="b_item_no" data-error="Insufficient">Item No.</label> 
 				</div>
-				<div class="input-field col s12 m4">
+				<div class="input-field col s12 m3">
 					<input id="b_quantity" type="text" class="validate" name="b_quantity" required>
 					<label for="b_quantity" data-error="Insufficient">Quantity</label> 
 				</div>
-				<div class="input-field col s12 m4">
+				<div class="input-field col s12 m6">
 					<input id="b_classification" type="text" class="validate" name="b_classification" required>
 					<label for="b_classification" data-error="Insufficient">Item Classification</label>
 				</div>
