@@ -51,6 +51,10 @@ select:invalid { color: gray; }
 			@endforeach
 		</select>
 	</div>
+	<div class="input-field col s6">
+		<input id="account-name" type="text" name="account-name" required>
+		<label for="account-name">Account Name</label>
+	</div>
 </div>
 @endsection
 
@@ -74,10 +78,12 @@ select:invalid { color: gray; }
 		$('#select5').prop('disabled', true);
 		$('#select6').prop('disabled', true);
 		$('select').material_select();
+		$('#account-name').val('').blur().prop('disabled', true);
+		Materialize.updateTextFields();
 		$.ajax({
 			url: '{{ url('chartofaccounts/select1') }}',
 			type: 'POST',
-			data: { value : $(this).val() },
+			data: { select1 : $('#select1').val() },
 			success: function(data){
 				$('#select2').empty();
 				$.each(data, function() {
@@ -103,15 +109,17 @@ select:invalid { color: gray; }
 		$('#select5').prop('disabled', true);
 		$('#select6').prop('disabled', true);
 		$('select').material_select();
+		$('#account-name').val('').blur().prop('disabled', true);
+		Materialize.updateTextFields();
 		$.ajax({
 			url: '{{ url('chartofaccounts/select2') }}',
 			type: 'POST',
-			data: { value : $(this).val() },
+			data: { select1 : $('#select1').val(), select2 : $('#select2').val() },
 			success: function(data){
 				$('#select3').empty();
 				$.each(data, function() {
 					$.each(this, function(key, value) {
-						$('#select3').append("<option value='"+ value.major_account_group +"'>" + value.major_account_group + "</option>");
+						$('#select3').append("<option value='"+ value.sub_major_account_group +"'>" + value.sub_major_account_group + "</option>");
 					});
 				});
 				$('#select3').prop('disabled', false);
@@ -122,26 +130,103 @@ select:invalid { color: gray; }
 			}
 		});
 	});
-	$('#select3').on('change', function (e) {
+	$(document).on('change', '#select3', function(e){
 		$('#select4').val(0);
 		$('#select5').val(0);
 		$('#select6').val(0);
-		$('#select4').prop('disabled', false);
+		$('#select4').prop('disabled', true);
 		$('#select5').prop('disabled', true);
 		$('#select6').prop('disabled', true);
 		$('select').material_select();
+		$('#account-name').val('').blur().prop('disabled', true);
+		Materialize.updateTextFields();
+		$.ajax({
+			url: '{{ url('chartofaccounts/select3') }}',
+			type: 'POST',
+			data: { select1 : $('#select1').val(), select2 : $('#select2').val(), select3 : $('#select3').val() },
+			success: function(data){
+				$('#select4').empty();
+				$.each(data, function() {
+					$.each(this, function(key, value) {
+						$('#select4').append("<option value='"+ value.gl_account +"'>" + value.gl_account + "</option>");
+					});
+				});
+				$('#select4').prop('disabled', false);
+				$('select').material_select();
+			},
+			error: function(data){
+				console.log(data);
+			}
+		});
 	});
-	$('#select4').on('change', function (e) {
+	$(document).on('change', '#select4', function(e){
 		$('#select5').val(0);
 		$('#select6').val(0);
-		$('#select5').prop('disabled', false);
+		$('#select5').prop('disabled', true);
 		$('#select6').prop('disabled', true);
 		$('select').material_select();
+		$('#account-name').val('').blur().prop('disabled', true);
+		Materialize.updateTextFields();
+		$.ajax({
+			url: '{{ url('chartofaccounts/select4') }}',
+			type: 'POST',
+			data: { select1 : $('#select1').val(), select2 : $('#select2').val(), select3 : $('#select3').val(), select4 : $('#select4').val() },
+			success: function(data){
+				$('#select5').empty();
+				$.each(data, function() {
+					$.each(this, function(key, value) {
+						$('#select5').append("<option value='"+ value.gl_contra_account +"'>" + value.gl_contra_account + "</option>");
+					});
+				});
+				$('#select5').prop('disabled', false);
+				$('select').material_select();
+			},
+			error: function(data){
+				console.log(data);
+			}
+		});
 	});
-	$('#select5').on('change', function (e) {
+	$(document).on('change', '#select5', function(e){
 		$('#select6').val(0);
-		$('#select6').prop('disabled', false);
+		$('#select6').prop('disabled', true);
 		$('select').material_select();
+		$('#account-name').val('').blur().prop('disabled', true);
+		Materialize.updateTextFields();
+		$.ajax({
+			url: '{{ url('chartofaccounts/select5') }}',
+			type: 'POST',
+			data: { select1 : $('#select1').val(), select2 : $('#select2').val(), select3 : $('#select3').val(), select4 : $('#select4').val(), select5 : $('#select5').val() },
+			success: function(data){
+				$('#select6').empty();
+				$.each(data, function() {
+					$.each(this, function(key, value) {
+						$('#select6').append("<option value='"+ value.subsidiary_ledger_account +"'>" + value.subsidiary_ledger_account + "</option>");
+					});
+				});
+				$('#select6').prop('disabled', false);
+				$('select').material_select();
+			},
+			error: function(data){
+				console.log(data);
+			}
+		});
+	});
+	$(document).on('change', '#select6', function(e){
+		$('#account-name').val('').blur().prop('disabled', true);
+		Materialize.updateTextFields();
+		$.ajax({
+			url: '{{ url('chartofaccounts/select6') }}',
+			type: 'POST',
+			data: { select1 : $('#select1').val(), select2 : $('#select2').val(), select3 : $('#select3').val(), select4 : $('#select4').val(), select5 : $('#select5').val(), select6 : $('#select6').val() },
+			success: function(data){
+				console.log(data);
+				$('#account-name').val(data.items[0].account_name).blur().prop('disabled', false);
+				Materialize.updateTextFields();
+			},
+			error: function(data){
+				console.log(data);
+			}
+		});
 	});
 </script>
 @endsection
