@@ -208,7 +208,7 @@
 							</td>
 							<td style="border-bottom: none;">
 								<label>
-									<center>{{ $item->available_stock }}</center>
+									<center>{{ number_format($item->available_stock, 0, '', ',')?:'' }}</center>
 								</label>
 							</td>
 							<td style="border-bottom: none;">
@@ -233,12 +233,12 @@
 							</td>
 							<td style="border-bottom: none;">
 								<label>
-									<center>₱{{ number_format($item->unit_cost, 0, '', ',')?:'' }}</center>
+									<center>{{($x = str_replace('.00', '', $item->unit_cost)?:'')?substr_replace(number_format($x, 2, '.', ','), '₱', 0, 0):''}}</center>
 								</label>
 							</td>
 							<td style="border-bottom: none; border-right: none;">
 								<label>
-									<center>₱{{ number_format($item->estimated_cost, 0, '', ',')?:'' }}</center>
+									<center>{{($x = str_replace('.00', '', $item->estimated_cost)?:'')?substr_replace(number_format($x, 2, '.', ','), '₱', 0, 0):''}}</center>
 								</label>
 							</td>
 						</tr>
@@ -472,20 +472,20 @@
 											<small>Budget</small>
 										</td>
 										<td style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>₱{{ number_format($purchase_req->budget_quarter, 0, '', ',')?:'' }}</b></small>
+											<small><b>{{($x = str_replace('.00', '', $purchase_req->budget_quarter)?:'')?substr_replace(number_format($x, 2, '.', ','), '₱', 0, 0):''}}</b></small>
 										</td>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>₱{{ number_format($purchase_req->budget_year, 0, '', ',')?:'' }}</b></small>
+											<small><b>{{($x = str_replace('.00', '', $purchase_req->budget_year)?:'')?substr_replace(number_format($x, 2, '.', ','), '₱', 0, 0):''}}</b></small>
 										</td>
 									</tr>
 									<tr>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
 											<small>Amount Utilized</small>
 										</td>										<td style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>₱{{ number_format($purchase_req->amount_quarter, 0, '', ',')?:'' }}</b></small>
+											<small><b>{{($x = str_replace('.00', '', $purchase_req->amount_quarter)?:'')?substr_replace(number_format($x, 2, '.', ','), '₱', 0, 0):''}}</b></small>
 										</td>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>₱{{ number_format($purchase_req->amount_year, 0, '', ',')?:'' }}</b></small>
+											<small><b>{{($x = str_replace('.00', '', $purchase_req->amount_year)?:'')?substr_replace(number_format($x, 2, '.', ','), '₱', 0, 0):''}}</b></small>
 										</td>
 									</tr>
 									<tr>
@@ -493,10 +493,10 @@
 											<small>Balance-to-Date</small>
 										</td>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>₱{{ number_format($purchase_req->btd_quarter, 0, '', ',')?:'' }}</b></small>
+											<small><b>{{($x = str_replace('.00', '', $purchase_req->btd_quarter)?:'')?substr_replace(number_format($x, 2, '.', ','), '₱', 0, 0):''}}</b></small>
 										</td>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>₱{{ number_format($purchase_req->btd_year, 0, '', ',')?:'' }}</b></small>
+											<small><b>{{($x = str_replace('.00', '', $purchase_req->btd_year)?:'')?substr_replace(number_format($x, 2, '.', ','), '₱', 0, 0):''}}</b></small>
 										</td>
 									</tr>
 									<tr>
@@ -504,10 +504,10 @@
 											<small>Amount of the Request</small>
 										</td>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>₱{{ number_format($purchase_req->amntreq_quarter, 0, '', ',')?:'' }}</b></small>
+											<small><b>{{($x = str_replace('.00', '', $purchase_req->amntreq_quarter)?:'')?substr_replace(number_format($x, 2, '.', ','), '₱', 0, 0):''}}</b></small>
 										</td>
 										<td style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>₱{{ number_format($purchase_req->amntreq_year, 0, '', ',')?:'' }}</b></small>
+											<small><b>{{($x = str_replace('.00', '', $purchase_req->amntreq_year)?:'')?substr_replace(number_format($x, 2, '.', ','), '₱', 0, 0):''}}</b></small>
 										</td>
 									</tr>
 									<tr>
@@ -515,10 +515,10 @@
 											<small>Balance after this Request</small>
 										</td>
 										<td style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>₱{{ number_format($purchase_req->balreq_quarter, 0, '', ',')?:'' }}</b></small>
+											<small><b>{{($x = str_replace('.00', '', $purchase_req->balreq_quarter)?:'')?substr_replace(number_format($x, 2, '.', ','), '₱', 0, 0):''}}</b></small>
 										</td>
 										<td  style="border-top: none; border-left: none; border-right: none; border-bottom: none;">
-											<small><b>₱{{ number_format($purchase_req->balreq_year, 0, '', ',')?:'' }}</b></small>
+											<small><b>{{($x = str_replace('.00', '', $purchase_req->balreq_year)?:'')?substr_replace(number_format($x, 2, '.', ','), '₱', 0, 0):''}}</b></small>
 										</td>
 									</tr>
 								</table>
