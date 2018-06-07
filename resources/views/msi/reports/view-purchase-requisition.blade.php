@@ -42,10 +42,14 @@
 			text-transform: uppercase;
 		}
 		.checkbox {
-			margin: 10px 10px 10px 10px;
+			margin: 5px 10px;
 		}
-		input[type="checkbox"] {
-	      transform:scale(2, 2);
+		.checkbox span {
+	      font-size: 18px;
+	      border: solid #000 2px;
+	      padding: 0px 3px;
+	      width: 10px;
+	      height: 10px;
 	    }
 	    .checkbox-label {
 	    	font-size: 14px;
@@ -115,22 +119,22 @@
 					<table cellspacing="0" cellpadding="0">
 						<tr>
 							<td style="border-top: none; border-left: none; border-bottom: none; border-right: none;">
-								<div class="checkbox-container">
-									<input type="checkbox"  class="checkbox" {{ ($purchase_req->options == '1' ? ' checked ':'') }} >
+								<div class="checkbox">
+									<span>{{ ($purchase_req->options=='1'?'✔':'✘') }}</span>
 									<label for="included_app" class="checkbox-label" >Included in Appproved Procurement Program (APP)</label>
 								</div>
-								<div class="checkbox-container">
-									<input type="checkbox" class="checkbox" {{ ($purchase_req->needs_budget == '1' ? ' checked ':'') }} >
+								<div class="checkbox">
+									<span>{{ ($purchase_req->needs_budget=='1'?'✔':'✘') }}</span>
 									<label for="included_app" class="checkbox-label">Needs Budget Realignment</label>
 								</div>
 							</td>
 							<td style="border-top: none; border-right: none; border-bottom: none; border-left: none;">
-								<div class="checkbox-container">
-									<input type="checkbox" class="checkbox" {{ ($purchase_req->options  == '2' ? ' checked ':'') }} >
+								<div class="checkbox">
+									<span>{{ ($purchase_req->options=='2'?'✔':'✘') }}</span>
 									<label for="included_app" class="checkbox-label">Not Included in the APP</label>
 								</div>
-								<div class="checkbox-container">
-									<input type="checkbox"  class="checkbox" {{ ($purchase_req->needs_item == '1' ? ' checked ':'') }} >
+								<div class="checkbox">
+									<span>{{ ($purchase_req->needs_item=='1' ?'✔':'✘') }}</span>
 									<label for="included_app" class="checkbox-label">Needs Item Reprogramming</label>
 								</div>
 							</td>
@@ -284,12 +288,12 @@
 										<td style="border-bottom: none; padding-bottom: 15px;" width="50%">
 											<label class="bold">For Non-Stock</label>
 											<br>
-											<div class="checkbox-container">
-												<input type="checkbox" name="to_be_carried" class="checkbox" {{ ($purchase_req->to_be_carried == '1' ? ' checked ':'') }}>
+											<div class="checkbox">
+												<span>{{ ($purchase_req->to_be_carried=='1'?'✔':'✘') }}</span>
 												<label for="to_be_carried" class="checkbox-label">To be carried </label><label class="checkbox-label" style="margin-left: 45px;">in the stock</label>
 											</div>
-											<div class="checkbox-container">
-												<input type="checkbox" name="to_be_carried" class="checkbox" {{ ($purchase_req->on_case_to == '1' ? ' checked ':'') }}>
+											<div class="checkbox">
+												<span>{{ ($purchase_req->on_case_to=='1'?'✔':'✘') }}</span>
 												<label for="to_be_carried" class="checkbox-label">On case to </label><label class="checkbox-label" style="margin-left: 45px;">case basis</label>
 										</td>
 										<td style="border-bottom: none; border-right: none; padding-bottom: 15px; " width="25%">
