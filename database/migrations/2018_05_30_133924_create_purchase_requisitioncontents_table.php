@@ -17,7 +17,7 @@ class CreatePurchaseRequisitioncontentsTable extends Migration
             $table->increments('id');
             $table->integer('pr_id');
             $table->string('item_no', 20);
-            $table->string('stock_no', 20);
+            $table->string('stock_number', 20);
             $table->integer('available_stock');
             $table->string('reorder_point', 20);
             $table->string('reorder_quantity', 20);

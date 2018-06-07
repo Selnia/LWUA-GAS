@@ -287,8 +287,8 @@
 			<div class="row">
 				<div id="tabcontent1" class="col s12 grey lighten-5 active">
 					<div class="input-field col s12 m6">
-						<input id="stock_no" type="text" class="validate uppercase" name="stock_no" required>
-						<label for="stock_no" data-error="Insufficient">STOCK NO.</label> 
+						<input id="stock_number" type="text" class="validate uppercase" name="stock_number" required>
+						<label for="stock_number" data-error="Insufficient">STOCK NO.</label> 
 					</div>
 					<div class="input-field col s12 m6">
 						<input id="available_stock" type="text" class="validate" name="available_stock" required>
@@ -534,7 +534,7 @@
 			var id = this.id;
 			$('#item-name').text($('#item'+id).text());
 			$('#pr-id').val(id);
-			$('#stock_no').val('').blur().removeClass('invalid');	
+			$('#stock_number').val('').blur().removeClass('invalid');	
 			$('#reorder_quantity').val('').blur().removeClass('invalid');	
 			$('#particulars').val('').blur().removeClass('invalid');	
 			$('#quantity').val('').blur().removeClass('invalid');	
@@ -546,9 +546,10 @@
 		$(document).on('submit', '#form-purchase-requisition-content', function(e){
 			e.preventDefault();
 			var formdata = $(this).serialize();
+
 			swal({   
 				title: "Want to save this?",
-				text: "<div class='row'><div class='col s12 white lighten-5'><table class='sweet-alert-table'><thead><tr><th width='30%'></th></tr></thead><tbody><tr><td>Item No:</td><td class='uppercase'><b>"+$('input[name=pr_id]').val()+"</b></td><td>Stock No: </td><td><b>"+$('input[name=stock_no]').val()+"</b></td></tr><tr><td>Available Stock: </td><td><b>"+$('input[name=available_stock]').val()+"</b></td><td>Reorder Point: </td><td><b>"+$('select[name=reorder_point]').val()+"</b></td></tr><tr><td>Reorder Qty: </td><td><b>"+$('select[name=reorder_quantity]').val()+"</b></td><td>Particulars: </td><td><b>"+$('textarea[name=particulars]').val()+"</b></td></tr><tr><td>Quantity: </td><td><b>"+$('input[name=quantity]').val()+"</b></td><td>Unit Cost: </td><td><b>"+$('input[name=unit_cost]').val()+"</b></td></tr><tr><td>Estimated Cost: </td><td><b>"+$('input[name=estimated_cost]').val()+"</b></td></tr></tbody></table>", 
+				text: "<div class='row'><div class='col s12 white lighten-5'><table class='sweet-alert-table'><thead><tr><th width='30%'></th></tr></thead><tbody><tr><td>Item No:</td><td class='uppercase'><b>"+$('input[name=pr_id]').val()+"</b></td><td>Stock No: </td><td><b>"+$('input[name=stock_number]').val()+"</b></td></tr><tr><td>Available Stock: </td><td><b>"+$('input[name=available_stock]').val()+"</b></td><td>Reorder Point: </td><td><b>"+$('select[name=reorder_point]').val()+"</b></td></tr><tr><td>Reorder Qty: </td><td><b>"+$('select[name=reorder_quantity]').val()+"</b></td><td>Particulars: </td><td><b>"+$('textarea[name=particulars]').val()+"</b></td></tr><tr><td>Quantity: </td><td><b>"+$('input[name=quantity]').val()+"</b></td><td>Unit Cost: </td><td><b>"+$('input[name=unit_cost]').val()+"</b></td></tr><tr><td colspan=3><b>A. Similar Item/ s Already</b></td></tr><tr><td>Item Number: </td><td><b>"+$('input[name=a_item_no]').val()+"</b></td><td>Quantity: </td><td><b>"+$('input[name=a_quantity]').val()+"</b></td></tr><td colspan=2>Item Classification: </td><td><b>"+$('input[name=a_classification]').val()+"</b></td></tr> <tr><td colspan=3><b>B. Supplies (Stock Status)</b></td></tr><tr><td>Item Number: </td><td><b>"+$('input[name=b_item_no]').val()+"</b></td><td>Quantity: </td><td><b>"+$('input[name=b_quantity]').val()+"</b></td></tr><td colspan=2>Item Classification: </td><td><b>"+$('input[name=b_classification]').val()+"</b></td></tr></tbody></table>", 
 				type: "warning",
 				html: true,
 				showCancelButton: true,   

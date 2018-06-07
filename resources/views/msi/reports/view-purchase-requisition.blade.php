@@ -203,7 +203,7 @@
 							</td>
 							<td style="border-bottom: none;">
 								<label>
-									<center>{{ $item->stock_no }}</center>
+									<center>{{ $item->stock_number }}</center>
 								</label>
 							</td>
 							<td style="border-bottom: none;">

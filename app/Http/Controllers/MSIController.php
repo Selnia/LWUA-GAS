@@ -301,9 +301,11 @@ class MSIController extends Controller
 		$purchase_req = purchase_requisition::find($id);
 		$items = purchase_requisitioncontent::where('pr_id',  $id)->get();
 		$total = purchase_requisitioncontent::where('pr_id', $id)->sum('estimated_cost');
-		return view('msi.reports.view-purchase-requisition', ['purchase_req' => $purchase_req, 'items' => $items, 'total' => $total]);
-	}
 
+		$stock_number = purchase_requisitioncontent::with('stockcard')->get();
+		//dd($stock_number->stockcard->stock_number);
+		return view('msi.reports.view-purchase-requisition', ['purchase_req' => $purchase_req, 'items' => $items, 'total' => $total, 'stock_number' => $stock_number]);
+	}
 
 	public function addpurchase_requisitioncontent()
 	{
@@ -314,7 +316,7 @@ class MSIController extends Controller
 
 			$pr_content->pr_id = Request::get('pr_id');
 			$pr_content->item_no = Request::get('pr_id');
-			$pr_content->stock_no = Request::get('stock_no');
+			$pr_content->stock_number = Request::get('stock_number');
 			$pr_content->available_stock = Request::get('available_stock');
 			$pr_content->reorder_point = Request::get('reorder_point');
 			$pr_content->reorder_quantity = Request::get('reorder_quantity');
