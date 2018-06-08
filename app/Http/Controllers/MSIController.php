@@ -196,22 +196,28 @@ class MSIController extends Controller
 		return view('msi.reports.view-stockcard', ['stockcard' => $stockcard, 'items' => $items	]);
 	}
 
-	public function viewstockstatus()
+	public function viewstockstatus($x, $y)
 	{
-		$items = stockcard::with('stockcardcontent')->orderBy('article')->get();
-		return view('msi.reports.view-stockstatus', compact('items'));
+		$items = stockcard::whereHas('stockcardcontent', function($query) use ($x, $y){
+			$query->whereMonth('created_at', $x)->whereYear('created_at', Carbon::now()->year-$y+1);
+		})->with(['stockcardcontent' => function($query) use ($x, $y){
+			$query->whereMonth('created_at', $x)->whereYear('created_at', Carbon::now()->year-$y+1);
+		}])->orderBy('article')->get();
+		return view('msi.reports.view-stockstatus', ['items' => $items, 'x' => $x, 'y' => $y]);
 	}
 
-	public function viewinventorymonthly($x)
+	public function viewinventorymonthly($x, $y)
 	{
 		$type = 'monthly';
-		$items = stockcard::whereHas('stockcardcontent', function($query) use ($x){
-			$query->whereMonth('created_at', $x)->whereYear('created_at', Carbon::now()->year);
-		})->get();
-		return view('msi.reports.view-inventory', ['items' => $items, 'type' => $type, 'x' => $x]);
+		$items = stockcard::whereHas('stockcardcontent', function($query) use ($x, $y){
+			$query->whereMonth('created_at', $x)->whereYear('created_at', Carbon::now()->year-$y+1);
+		})->with(['stockcardcontent' => function($query) use ($x, $y){
+			$query->whereMonth('created_at', $x)->whereYear('created_at', Carbon::now()->year-$y+1);
+		}])->with('bincard.bincardcontent')->orderBy('article')->get();
+		return view('msi.reports.view-inventory', ['items' => $items, 'type' => $type, 'x' => $x, 'y' => $y]);
 	}
 
-	public function viewinventoryquarterly($x)
+	public function viewinventoryquarterly($x, $y)
 	{
 		$type = 'quarterly';
 		$i = $n = 1;
@@ -220,14 +226,16 @@ class MSIController extends Controller
 			$n += 3;
 			$i++;
 		}
-		$items = stockcard::whereHas('stockcardcontent', function($query) use ($n){
-			$query->whereMonth('created_at', '>=', $n)->whereMonth('created_at', '<=', $n+2)->whereYear('created_at', Carbon::now()->year);
-		})->get();
+		$items = stockcard::whereHas('stockcardcontent', function($query) use ($n, $y){
+			$query->whereMonth('created_at', '>=', $n)->whereMonth('created_at', '<=', $n+2)->whereYear('created_at', Carbon::now()->year-$y+1);
+		})->with(['stockcardcontent' => function($query) use ($n, $y){
+			$query->whereMonth('created_at', '>=', $n)->whereMonth('created_at', '<=', $n+2)->whereYear('created_at', Carbon::now()->year-$y+1);
+		}])->with('bincard.bincardcontent')->orderBy('article')->get();
 		$x = $n+2;
-		return view('msi.reports.view-inventory', ['items' => $items, 'type' => $type, 'x' => $x]);
+		return view('msi.reports.view-inventory', ['items' => $items, 'type' => $type, 'x' => $x, 'y' => $y]);
 	}
 
-	public function viewinventorysemiannually($x)
+	public function viewinventorysemiannually($x, $y)
 	{
 		$type = 'semiannually';
 		$i = $n = 1;
@@ -236,18 +244,25 @@ class MSIController extends Controller
 			$n += 6;
 			$i++;
 		}
-		$items = stockcard::whereHas('stockcardcontent', function($query) use ($n){
-			$query->whereMonth('created_at', '>=', $n)->whereMonth('created_at', '<=', $n+5)->whereYear('created_at', Carbon::now()->year);
-		})->get();
+		$items = stockcard::whereHas('stockcardcontent', function($query) use ($n, $y){
+			$query->whereMonth('created_at', '>=', $n)->whereMonth('created_at', '<=', $n+5)->whereYear('created_at', Carbon::now()->year-$y+1);
+		})->with(['stockcardcontent' => function($query) use ($n, $y){
+			$query->whereMonth('created_at', '>=', $n)->whereMonth('created_at', '<=', $n+5)->whereYear('created_at', Carbon::now()->year-$y+1);
+		}])->with('bincard.bincardcontent')->orderBy('article')->get();
 		$x = $n+5;
-		return view('msi.reports.view-inventory', ['items' => $items, 'type' => $type, 'x' => $x]);
+		return view('msi.reports.view-inventory', ['items' => $items, 'type' => $type, 'x' => $x, 'y' => $y]);
 	}
 
-	public function viewinventoryannually($x)
+	public function viewinventoryannually($y)
 	{
 		$type = 'annually';
-		$items = stockcard::whereMonth('created_at', '>=', 1)->whereMonth('created_at', '<=', 12)->get();
-		return view('msi.reports.view-inventory', ['type' => $type]);
+		$items = stockcard::whereHas('stockcardcontent', function($query) use ($y){
+			$query->whereMonth('created_at', '>=', 1)->whereMonth('created_at', '<=', 12)->whereYear('created_at', Carbon::now()->year-$y+1);
+		})->with(['stockcardcontent' => function($query) use ($y){
+			$query->whereMonth('created_at', '>=', 1)->whereMonth('created_at', '<=', 12)->whereYear('created_at', Carbon::now()->year-$y+1);
+		}])->with('bincard.bincardcontent')->orderBy('article')->get();
+		($y==1)?$x=Carbon::now()->month:$x='12';
+		return view('msi.reports.view-inventory', ['items' => $items, 'type' => $type, 'x' => $x, 'y' => $y]);
 	}
 
 	public function purchase_requisition()
